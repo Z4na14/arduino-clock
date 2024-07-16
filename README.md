@@ -12,4 +12,4 @@
 
 # How to use
 
-Upload the code to the board using the _ATmega328P (Old Bootloader)_ (for boards bought from third party manufacturers) and configuring the time from the RTC module beforehand.
+Upload the code to the board using the _ATmega328P (Old Bootloader)_ (for boards bought from third party manufacturers) and configuring the time from the RTC module beforehand (little code snippet inside the main file).
