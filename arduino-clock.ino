@@ -29,7 +29,7 @@ const uint64_t IMAGES[] = {
 
 
 void setup() {
-  Wire.begin();
+	Wire.begin();
 
 	bright = 7;
 	delay(10);
@@ -40,37 +40,38 @@ void setup() {
 		lc.setIntensity(address, bright);	//set light intensity 0 - min, 15 - max
 		lc.clearDisplay(address);		//clear display
 	}
-
-  // Functions used just to set the time of the clock
-  //setTime.setMinute(59);
-  //setTime.setHour(14);
+	
+	// Functions used just to set the time of the clock
+	//setTime.setMinute(59);
+	//setTime.setHour(14);
 
 }
 
 void loop() {
 
-  GetRtc(); // Update time variables
+  	GetRtc(); // Update time variables
 	WriteTime();	//write actual time to matrix display
 
-  delay(1000);
+  	delay(1000);
 }
 
 void WriteTime() {
-  drawSymbols(3, (byte) floor(hour/10));
-  drawSymbols(2, hour % 10);
+	drawSymbols(3, (byte) floor(hour/10));
+	drawSymbols(2, hour % 10);
 
-  drawSymbols(1, (byte) floor(minute/10));
-  drawSymbols(0, minute % 10);
+  	drawSymbols(1, (byte) floor(minute/10));
+  	drawSymbols(0, minute % 10);
 
-  lc.setLed(2, 1, 7, true);  //addr, row, column
-  lc.setLed(2, 2, 7, true);
-  lc.setLed(2, 5, 7, true);
-  lc.setLed(2, 6, 7, true);
+	// Blinking dots
+	lc.setLed(2, 1, 7, true);  //addr, row, column
+	lc.setLed(2, 2, 7, true);
+	lc.setLed(2, 5, 7, true);
+	lc.setLed(2, 6, 7, true);
 }
 
 //read RTC
 void GetRtc() {
-  DateTime now = rtc.now();
+  	DateTime now = rtc.now();
 
 	second = now.second();
 	minute = now.minute();
@@ -78,12 +79,12 @@ void GetRtc() {
 }
 
 void drawSymbols(byte position, byte digit) {
-  for (int i = 0; i < 8; i++) {
-    byte row = (IMAGES[digit] >> i * 8) & 0xFF;
-    for (int j = 0; j < 8; j++) {
-      lc.setLed(position, i, j, bitRead(row, j));
-    }
-  }
+	for (int i = 0; i < 8; i++) {
+		byte row = (IMAGES[digit] >> i * 8) & 0xFF;
+		for (int j = 0; j < 8; j++) {
+		lc.setLed(position, i, j, bitRead(row, j));
+		}
+	}
 
-  delay(1000);
+	delay(1000);
 }
