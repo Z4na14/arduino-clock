@@ -42,15 +42,16 @@ void setup() {
 	}
 	
 	// Functions used just to set the time of the clock
-	//setTime.setMinute(59);
-	//setTime.setHour(14);
+  // Object at the top of the program must be uncommented for it to work
+	//setTime.setMinute(18);
+	//setTime.setHour(10);
 
 }
 
 void loop() {
 
   	GetRtc(); // Update time variables
-	WriteTime();	//write actual time to matrix display
+	  WriteTime();	//write actual time to matrix display
 
   	delay(1000);
 }
